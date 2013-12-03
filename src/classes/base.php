@@ -18,9 +18,12 @@ class plBase
         if ( !in_array( $directory, self::$autoloadDirectory ) && is_dir( $directory ) && is_readable( $directory ) )
         {
             self::$autoloadDirectory[] = $directory;
-            foreach( $glob = glob( $directory."/*.php" ) as $file )
+            
+            $glob = new RegexIterator(new DirectoryIterator($directory), '/\.php$/');
+            
+            foreach($glob as $file)
             {
-                if ( is_array( $autoload = include( $file ) ) ) 
+                if ( is_array( $autoload = include( $file->getPathname() ) ) ) 
                 {
                     self::$autoload = array_merge( $autoload, self::$autoload );
                 }
