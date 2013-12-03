@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 
 require_once( dirname( __FILE__ ) . '/../config/config.php' );
@@ -13,8 +12,10 @@ HEADER;
 
 function showUsage() 
 {
+    global $argv;
+    
     echo <<<USAGE
-Usage: phuml [-h|-l] [OPTIONS] <DIRECTORY[,DIRECTORY…]> <PROCESSOR> [PROCESSOR OPTIONS] ... <OUTFILE>
+Usage: $argv[0] [-h|-l] [OPTIONS] <DIRECTORY[,DIRECTORY…]> <PROCESSOR> [PROCESSOR OPTIONS] ... <OUTFILE>
 
 Commands:
     -h      Display this help text
